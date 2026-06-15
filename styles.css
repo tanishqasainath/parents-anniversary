@@ -29,13 +29,30 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+.heart {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #d4535a;
+  animation: heartbeat 1.4s ease-in-out infinite;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14%      { transform: scale(1.2); }
+  28%      { transform: scale(1); }
+  42%      { transform: scale(1.15); }
+  56%      { transform: scale(1); }
+}
+
 .label {
   font-weight: 500;
   font-size: 0.75rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: #a0845a;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  animation: fadeSlide 1s ease 0.2s both;
 }
 
 .names {
@@ -44,7 +61,8 @@ body {
   font-size: clamp(2rem, 6vw, 3.5rem);
   line-height: 1.2;
   color: #3d2e22;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  animation: fadeSlide 1s ease 0.4s both;
 }
 
 .amp {
@@ -56,4 +74,10 @@ body {
   font-size: clamp(1rem, 2.5vw, 1.3rem);
   letter-spacing: 0.15em;
   color: #8a7a6a;
+  animation: fadeSlide 1s ease 0.6s both;
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
