@@ -6,6 +6,7 @@
 
 html, body {
   height: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -18,11 +19,14 @@ body {
   color: #2c241b;
   -webkit-font-smoothing: antialiased;
   padding: 1.5rem;
+  min-height: 100vh;
+  position: relative;
 }
 
 /* ── Card ─────────────────────────────── */
 .card {
   position: relative;
+  z-index: 10;
   max-width: 520px;
   width: 100%;
   background: #fcf8f2;
@@ -100,6 +104,159 @@ body {
   font-size: 0.6em;
 }
 
+/* ── Balloons ─────────────────────────── */
+.balloons {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -80px;
+  width: 48px;
+  height: 60px;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  opacity: 0;
+  animation: floatUp linear forwards;
+}
+
+.balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 20px;
+  background: rgba(108, 93, 80, 0.3);
+}
+
+/* ── Balloon colors ───────────────────── */
+.balloon--1 {
+  left: 8%;
+  width: 42px;
+  height: 52px;
+  background: #d4535a;
+  animation-duration: 10s;
+  animation-delay: 0.2s;
+}
+
+.balloon--2 {
+  left: 22%;
+  width: 50px;
+  height: 62px;
+  background: #c4a265;
+  animation-duration: 12s;
+  animation-delay: 0.8s;
+}
+
+.balloon--3 {
+  left: 40%;
+  width: 44px;
+  height: 55px;
+  background: #b5c9c1;
+  animation-duration: 9s;
+  animation-delay: 1.5s;
+}
+
+.balloon--4 {
+  left: 58%;
+  width: 52px;
+  height: 65px;
+  background: #d4535a;
+  animation-duration: 11s;
+  animation-delay: 0.5s;
+}
+
+.balloon--5 {
+  left: 75%;
+  width: 46px;
+  height: 58px;
+  background: #c4a265;
+  animation-duration: 13s;
+  animation-delay: 1s;
+}
+
+.balloon--6 {
+  left: 90%;
+  width: 40px;
+  height: 50px;
+  background: #e3c9b0;
+  animation-duration: 10s;
+  animation-delay: 1.8s;
+}
+
+/* ── Sway while floating ──────────────── */
+.balloon--1, .balloon--4 {
+  animation-name: floatUp1;
+}
+.balloon--2, .balloon--5 {
+  animation-name: floatUp2;
+}
+.balloon--3, .balloon--6 {
+  animation-name: floatUp3;
+}
+
+@keyframes floatUp1 {
+  0% {
+    bottom: -80px;
+    opacity: 0;
+    transform: translateX(0);
+  }
+  10% {
+    opacity: 0.85;
+  }
+  90% {
+    opacity: 0.85;
+  }
+  100% {
+    bottom: 110vh;
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+@keyframes floatUp2 {
+  0% {
+    bottom: -80px;
+    opacity: 0;
+    transform: translateX(0);
+  }
+  10% {
+    opacity: 0.85;
+  }
+  90% {
+    opacity: 0.85;
+  }
+  100% {
+    bottom: 110vh;
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+}
+
+@keyframes floatUp3 {
+  0% {
+    bottom: -80px;
+    opacity: 0;
+    transform: translateX(0);
+  }
+  10% {
+    opacity: 0.85;
+  }
+  90% {
+    opacity: 0.85;
+  }
+  100% {
+    bottom: 110vh;
+    opacity: 0;
+    transform: translateX(12px);
+  }
+}
+
 /* ── Animations ───────────────────────── */
 @keyframes cardIn {
   from {
@@ -138,5 +295,8 @@ body {
   }
   .card__border {
     inset: 8px;
+  }
+  .balloon {
+    transform: scale(0.8);
   }
 }
