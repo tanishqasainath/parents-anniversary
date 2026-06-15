@@ -10,74 +10,133 @@ html, body {
 
 body {
   font-family: 'Inter', sans-serif;
-  background: #faf6f0;
+  font-weight: 300;
+  background: #d6cfc4;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #2c241b;
   -webkit-font-smoothing: antialiased;
+  padding: 1.5rem;
 }
 
-.container {
+/* ── Card ─────────────────────────────── */
+.card {
+  position: relative;
+  max-width: 520px;
+  width: 100%;
+  background: #fcf8f2;
+  padding: 4rem 3rem 3.5rem;
   text-align: center;
-  padding: 2rem;
-  animation: fadeIn 1.2s ease;
+  box-shadow:
+    0 2px 40px rgba(44, 36, 27, 0.08),
+    0 1px 4px rgba(44, 36, 27, 0.04);
+  animation: cardIn 0.8s ease both;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
+.card__border {
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(196, 162, 101, 0.25);
+  pointer-events: none;
 }
 
-.heart {
-  font-size: clamp(2rem, 5vw, 3rem);
-  color: #d4535a;
-  animation: heartbeat 1.4s ease-in-out infinite;
-  margin-bottom: 0.5rem;
-  line-height: 1;
+.card__line {
+  width: 50px;
+  height: 1px;
+  background: #c4a265;
+  margin: 0 auto 2rem;
 }
 
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  14%      { transform: scale(1.2); }
-  28%      { transform: scale(1); }
-  42%      { transform: scale(1.15); }
-  56%      { transform: scale(1); }
+.card__line--bottom {
+  margin: 2rem auto 0;
 }
 
-.label {
-  font-weight: 500;
-  font-size: 0.75rem;
-  letter-spacing: 0.3em;
+.card__label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
   color: #a0845a;
-  margin-bottom: 0.75rem;
-  animation: fadeSlide 1s ease 0.2s both;
+  margin-bottom: 1.2rem;
+  animation: fadeUp 0.8s ease 0.3s both;
 }
 
-.names {
-  font-family: 'Playfair Display', serif;
+.card__names {
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 400;
-  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
   line-height: 1.2;
   color: #3d2e22;
-  margin-bottom: 0.75rem;
-  animation: fadeSlide 1s ease 0.4s both;
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+  animation: fadeUp 0.8s ease 0.5s both;
 }
 
-.amp {
+.card__amp {
   color: #c4a265;
+  font-style: italic;
 }
 
-.date {
+.card__heart {
+  font-size: 1.4rem;
+  color: #c4a265;
+  margin-bottom: 1rem;
+  line-height: 1;
+  animation: heartBeat 1.6s ease-in-out infinite;
+}
+
+.card__date {
+  font-family: 'Inter', sans-serif;
   font-weight: 300;
-  font-size: clamp(1rem, 2.5vw, 1.3rem);
-  letter-spacing: 0.15em;
-  color: #8a7a6a;
-  animation: fadeSlide 1s ease 0.6s both;
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
+  letter-spacing: 0.25em;
+  color: #6a5a4a;
+  animation: fadeUp 0.8s ease 0.7s both;
 }
 
-@keyframes fadeSlide {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
+.card__date sup {
+  font-size: 0.6em;
+}
+
+/* ── Animations ───────────────────────── */
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  15%      { transform: scale(1.25); }
+  30%      { transform: scale(1); }
+  45%      { transform: scale(1.15); }
+  60%      { transform: scale(1); }
+}
+
+/* ── Responsive ────────────────────────── */
+@media (max-width: 480px) {
+  .card {
+    padding: 3rem 1.8rem 2.5rem;
+  }
+  .card__border {
+    inset: 8px;
+  }
 }
